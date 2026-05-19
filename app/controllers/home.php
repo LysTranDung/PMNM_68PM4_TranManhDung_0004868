@@ -1,6 +1,9 @@
 <?php
 class home{
     public function index(){
-        echo "day la trang chu";
+        require_once "../app/views/home/index.php";
+    }
+    public function login(){
+        require_once "../app/views/home/login.php";
     }
 }
