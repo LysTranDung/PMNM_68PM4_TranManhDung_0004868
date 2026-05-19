@@ -1,6 +1,11 @@
 <?php
-class home{
+class sinhvien{
     public function index(){
-        echo "day la trang chu";
+        require_once "../app/views/sinhvien/index.php";
+    }
+
+    public function create(){
+        require_once "../app/views/sinhvien/create.php";
     }
 }
+?>
