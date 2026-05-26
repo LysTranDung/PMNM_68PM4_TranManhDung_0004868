@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-<?php
-    session_start();
-    session_destroy();
-    if(isset($_COOKIE['username'])) {
-        setcookie('username', '', time() - 3600);
-    }
-    header('Location: /auth/login.php');
-    exit();
-?>
-=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,4 +50,3 @@
     </div>
 </body>
 </html>
->>>>>>> f36696361597fc57af1d538b401e57fe9cb24167
