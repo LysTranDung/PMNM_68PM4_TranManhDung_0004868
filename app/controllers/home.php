@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 class auth {
 
     public $user = [
@@ -34,3 +35,13 @@ public function login() {
 }
 }
 ?>
+=======
+class home{
+    public function index(){
+        require_once "../app/views/home/index.php";
+    }
+    public function login(){
+        require_once "../app/views/home/login.php";
+    }
+}
+>>>>>>> f36696361597fc57af1d538b401e57fe9cb24167
