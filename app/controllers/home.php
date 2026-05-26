@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 class auth {
 
     public $user = [
