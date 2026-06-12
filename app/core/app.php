@@ -15,13 +15,13 @@ class App
 
         // 2. Xử lý Controller
         if (isset($urlProcessed[0])) {
-            if (file_exists('../app/controllers/' . $urlProcessed[0] . '.php')) {
+            if (file_exists(__DIR__ . '/../controllers/' . $urlProcessed[0] . '.php')) {
                 $this->controller = $urlProcessed[0];
                 unset($urlProcessed[0]);
             }
         }
         
-        require_once '../app/controllers/' . $this->controller . '.php';
+        require_once __DIR__ . '/../controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller; // Tạo đối tượng
 
         if (isset($urlProcessed[1])) {

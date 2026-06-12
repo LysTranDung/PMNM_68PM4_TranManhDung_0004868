@@ -13,15 +13,15 @@
         </div>
     <?php endif; ?>
 
-    <form action="index.php?url=sinhvien/create" method="POST">
+    <form action="index.php?url=sinhvien/edit/<?php echo $sinhvien['id']; ?>" method="POST">
         <div class="form-row">
             <div class="half">
                 <label for="hoten">Họ tên</label>
-                <input id="hoten" type="text" name="hoten" value="<?php echo htmlspecialchars($values['hoten'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
+                <input type="text" id="hoten" name="hoten" value="<?php echo htmlspecialchars($sinhvien['hoten'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
             </div>
             <div class="half">
                 <label for="mssv">MSSV</label>
-                <input id="mssv" type="text" name="mssv" value="<?php echo htmlspecialchars($values['mssv'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" required>
+                <input type="text" id="mssv" value="<?php echo htmlspecialchars($sinhvien['mssv'] ?? '', ENT_QUOTES, 'UTF-8'); ?>" readonly>
             </div>
         </div>
         <div class="form-row">
@@ -29,9 +29,9 @@
                 <label for="gioitinh">Giới tính</label>
                 <select id="gioitinh" name="gioitinh" required>
                     <option value="">Chọn giới tính</option>
-                    <option value="Nam" <?php echo ($values['gioitinh'] === 'Nam') ? 'selected' : ''; ?>>Nam</option>
-                    <option value="Nữ" <?php echo ($values['gioitinh'] === 'Nữ') ? 'selected' : ''; ?>>Nữ</option>
-                    <option value="Khác" <?php echo ($values['gioitinh'] === 'Khác') ? 'selected' : ''; ?>>Khác</option>
+                    <option value="Nam" <?php echo ($sinhvien['gioitinh'] === 'Nam') ? 'selected' : ''; ?>>Nam</option>
+                    <option value="Nữ" <?php echo ($sinhvien['gioitinh'] === 'Nữ') ? 'selected' : ''; ?>>Nữ</option>
+                    <option value="Khác" <?php echo ($sinhvien['gioitinh'] === 'Khác') ? 'selected' : ''; ?>>Khác</option>
                 </select>
             </div>
             <div class="half">
@@ -39,13 +39,13 @@
                 <select id="lop_id" name="lop_id" required>
                     <option value="">Chọn lớp</option>
                     <?php foreach ($lops as $lop): ?>
-                        <option value="<?php echo $lop['id']; ?>" <?php echo ($values['lop_id'] == $lop['id']) ? 'selected' : ''; ?>><?php echo htmlspecialchars($lop['tenlop'], ENT_QUOTES, 'UTF-8'); ?></option>
+                        <option value="<?php echo $lop['id']; ?>" <?php echo ($sinhvien['lop_id'] == $lop['id']) ? 'selected' : ''; ?>><?php echo htmlspecialchars($lop['tenlop'], ENT_QUOTES, 'UTF-8'); ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
         </div>
         <div class="form-actions">
-            <button class="button success" type="submit">Lưu</button>
+            <button class="button success" type="submit">Cập nhật</button>
             <a class="button secondary" href="index.php?url=sinhvien/index">Hủy</a>
         </div>
     </form>

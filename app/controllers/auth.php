@@ -1,36 +1,37 @@
 <?php
-class auth {
+require_once __DIR__ . '/../core/Controller.php';
 
-    public $user = [
-        "1" => "1",
-        "user" => "654321"
-    ];
+class auth extends Controller
+{
+    public function login()
+    {
+        $authModel = $this->model('AuthModel');
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $username = trim($_POST['username'] ?? '');
+            $password = trim($_POST['password'] ?? '');
 
+            if ($authModel->validate($username, $password)) {
+                $_SESSION['username'] = $username;
+                header('Location: index.php?url=sinhvien/index');
+                exit();
+            }
 
-public function login() {
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
+            $this->view('auth/login', [
+                'error' => 'Sai tài khoản hoặc mật khẩu. Vui lòng thử lại.'
+            ]);
+            return;
         }
 
-        $username = $_POST["username"] ?? '';
-        $password = $_POST["password"] ?? '';
+        $this->view('auth/login');
+    }
 
-        if (
-            isset($this->user[$username]) &&
-            $this->user[$username] === $password
-        ) {
-            // Đăng nhập thành công
-            $_SESSION["username"] = $username;
-            
-            header("Location: /home/index");
-            exit();
-        } else {
-            header("Location: /home/login");
-            exit();
-        }
+    public function logout()
+    {
+        session_unset();
+        session_destroy();
+
+        header('Location: index.php?url=home/login');
+        exit();
     }
 }
-}
-?>

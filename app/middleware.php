@@ -4,17 +4,21 @@ class middleware {
 
     public function checklogin() {
 
-    $currentUrl = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+        $url = $_GET['url'] ?? '';
 
-    $publicPages = [
-        '/home/login',
-        '/auth/login'
-    ]  ;
+        $publicPages = [
+            '',
+            'home/login',
+            'auth/login',
+            'auth/logout'
+        ];
 
-    if (!isset($_SESSION["username"]) && !in_array($currentUrl, $publicPages)) {
-        header("Location: /home/login");
-        exit();
+        if (
+            !isset($_SESSION['username']) &&
+            !in_array($url, $publicPages)
+        ) {
+            header('Location: index.php?url=home/login');
+            exit();
         }
     }
 }
-?>
